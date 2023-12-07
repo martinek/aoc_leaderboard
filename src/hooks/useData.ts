@@ -1,5 +1,4 @@
-import { useMemo } from "react";
-import data from "./data.json";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 interface RawLeaderboardDayStats {
   star_index: number;
@@ -46,16 +45,57 @@ export interface LeaderboardData {
   event: string;
   ownerId: number;
   members: LeaderboardMember[];
+  fetchedAt: number;
 }
 
-const useData = (): LeaderboardData => {
-  const raw = data as RawLeaderboardData;
+interface ApiResponse {
+  data: RawLeaderboardData;
+  fetchedAt: number;
+}
 
-  const parsedData: LeaderboardData = useMemo(
-    () => ({
-      event: raw.event,
-      ownerId: raw.owner_id,
-      members: Object.values(raw.members).map((rawMember) => ({
+export interface UseDataResult {
+  data: LeaderboardData | undefined;
+  error: Error | undefined;
+  loading: boolean;
+  refetch: (fresh?: boolean) => void;
+}
+
+const useData = (): UseDataResult => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | undefined>(undefined);
+  const [raw, setRaw] = useState<ApiResponse | undefined>(undefined);
+
+  const fetchData = useCallback(async (fresh?: boolean) => {
+    setLoading(true);
+    setError(undefined);
+
+    try {
+      const res = await fetch(`/api${fresh ? "?fresh=1" : ""}`);
+      const data = await res.json();
+      setRaw(data);
+    } catch (error) {
+      setError(new Error(`Error fetching data: ${error}`));
+    }
+
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const data: LeaderboardData | undefined = useMemo(() => {
+    if (raw == null) {
+      return undefined;
+    }
+
+    const rawData = raw.data;
+
+    return {
+      fetchedAt: raw.fetchedAt,
+      event: rawData.event,
+      ownerId: rawData.owner_id,
+      members: Object.values(rawData.members).map((rawMember) => ({
         globalScore: rawMember.global_score,
         id: rawMember.id,
         lastStarTs: rawMember.last_start_ts ? new Date(rawMember.last_start_ts * 1000) : undefined,
@@ -81,11 +121,10 @@ const useData = (): LeaderboardData => {
           return acc;
         }, {}),
       })),
-    }),
-    [raw]
-  );
+    };
+  }, [raw]);
 
-  return parsedData;
+  return { data, error, loading, refetch: fetchData };
 };
 
 export default useData;
