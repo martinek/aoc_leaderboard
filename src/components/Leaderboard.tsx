@@ -123,7 +123,7 @@ const UpdateButton: React.FC<{ fetchedAt?: number; onClick: () => void }> = ({ f
   React.useEffect(() => {
     const enable = () => {
       setEnabled(true);
-      setText("Update");
+      setText("[Update]");
     };
 
     if (fetchedAt == null) {
