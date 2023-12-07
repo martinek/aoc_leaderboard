@@ -1,0 +1,551 @@
+{
+  "owner_id": 2306602,
+  "members": {
+    "2306602": {
+      "completion_day_level": {
+        "1": {
+          "1": {
+            "star_index": 67544,
+            "get_star_ts": 1701426101
+          }
+        }
+      },
+      "id": 2306602,
+      "stars": 1,
+      "local_score": 4,
+      "global_score": 0,
+      "last_star_ts": 1701426101,
+      "name": "Peter Drobec"
+    },
+    "3452196": {
+      "global_score": 0,
+      "last_star_ts": 1701631258,
+      "name": "Michal Fašánek",
+      "completion_day_level": {
+        "1": {
+          "1": {
+            "star_index": 173025,
+            "get_star_ts": 1701454477
+          },
+          "2": {
+            "get_star_ts": 1701527837,
+            "star_index": 399941
+          }
+        },
+        "3": {
+          "2": {
+            "get_star_ts": 1701631258,
+            "star_index": 692906
+          },
+          "1": {
+            "star_index": 680637,
+            "get_star_ts": 1701627456
+          }
+        },
+        "2": {
+          "2": {
+            "get_star_ts": 1701543740,
+            "star_index": 455591
+          },
+          "1": {
+            "star_index": 455483,
+            "get_star_ts": 1701543702
+          }
+        }
+      },
+      "stars": 6,
+      "local_score": 24,
+      "id": 3452196
+    },
+    "201743": {
+      "completion_day_level": {
+        "1": {
+          "1": {
+            "get_star_ts": 1701416940,
+            "star_index": 32735
+          },
+          "2": {
+            "star_index": 52704,
+            "get_star_ts": 1701422373
+          }
+        }
+      },
+      "stars": 2,
+      "id": 201743,
+      "local_score": 17,
+      "global_score": 0,
+      "name": "peterbaricic",
+      "last_star_ts": 1701422373
+    },
+    "2333903": {
+      "global_score": 0,
+      "last_star_ts": 0,
+      "name": "Jano Káčer",
+      "completion_day_level": {},
+      "stars": 0,
+      "local_score": 0,
+      "id": 2333903
+    },
+    "3421410": {
+      "global_score": 0,
+      "last_star_ts": 1701631154,
+      "name": "Diana Strišovská",
+      "completion_day_level": {
+        "2": {
+          "2": {
+            "get_star_ts": 1701543394,
+            "star_index": 454537
+          },
+          "1": {
+            "star_index": 448331,
+            "get_star_ts": 1701541448
+          }
+        },
+        "1": {
+          "1": {
+            "star_index": 160044,
+            "get_star_ts": 1701450944
+          },
+          "2": {
+            "get_star_ts": 1701534135,
+            "star_index": 422917
+          }
+        },
+        "3": {
+          "2": {
+            "star_index": 692535,
+            "get_star_ts": 1701631154
+          },
+          "1": {
+            "get_star_ts": 1701627262,
+            "star_index": 680014
+          }
+        }
+      },
+      "local_score": 28,
+      "stars": 6,
+      "id": 3421410
+    },
+    "2316186": {
+      "last_star_ts": 1701515391,
+      "name": "Andrej Paskalev",
+      "global_score": 0,
+      "id": 2316186,
+      "stars": 4,
+      "local_score": 28,
+      "completion_day_level": {
+        "2": {
+          "2": {
+            "get_star_ts": 1701515391,
+            "star_index": 352824
+          },
+          "1": {
+            "get_star_ts": 1701514409,
+            "star_index": 348663
+          }
+        },
+        "1": {
+          "2": {
+            "star_index": 46277,
+            "get_star_ts": 1701420744
+          },
+          "1": {
+            "get_star_ts": 1701419322,
+            "star_index": 40925
+          }
+        }
+      }
+    },
+    "173562": {
+      "completion_day_level": {
+        "2": {
+          "1": {
+            "get_star_ts": 1701512382,
+            "star_index": 340175
+          },
+          "2": {
+            "star_index": 341856,
+            "get_star_ts": 1701512780
+          }
+        },
+        "4": {
+          "1": {
+            "get_star_ts": 1701674169,
+            "star_index": 808061
+          },
+          "2": {
+            "star_index": 812377,
+            "get_star_ts": 1701675283
+          }
+        },
+        "6": {
+          "2": {
+            "get_star_ts": 1701853126,
+            "star_index": 1310107
+          },
+          "1": {
+            "get_star_ts": 1701852378,
+            "star_index": 1307286
+          }
+        },
+        "3": {
+          "2": {
+            "star_index": 573679,
+            "get_star_ts": 1701594917
+          },
+          "1": {
+            "star_index": 567805,
+            "get_star_ts": 1701592713
+          }
+        },
+        "5": {
+          "1": {
+            "get_star_ts": 1701770487,
+            "star_index": 1096703
+          },
+          "2": {
+            "star_index": 1110712,
+            "get_star_ts": 1701776080
+          }
+        },
+        "1": {
+          "2": {
+            "get_star_ts": 1701423126,
+            "star_index": 55773
+          },
+          "1": {
+            "star_index": 52412,
+            "get_star_ts": 1701422302
+          }
+        }
+      },
+      "local_score": 87,
+      "stars": 12,
+      "id": 173562,
+      "global_score": 0,
+      "name": "Duy Vũ",
+      "last_star_ts": 1701853126
+    },
+    "3293323": {
+      "name": "Marián Abaffy",
+      "last_star_ts": 1701931785,
+      "global_score": 0,
+      "id": 3293323,
+      "stars": 14,
+      "local_score": 113,
+      "completion_day_level": {
+        "3": {
+          "1": {
+            "star_index": 590811,
+            "get_star_ts": 1701600256
+          },
+          "2": {
+            "star_index": 659010,
+            "get_star_ts": 1701620921
+          }
+        },
+        "1": {
+          "2": {
+            "star_index": 61398,
+            "get_star_ts": 1701424526
+          },
+          "1": {
+            "get_star_ts": 1701418426,
+            "star_index": 37683
+          }
+        },
+        "5": {
+          "1": {
+            "star_index": 1096497,
+            "get_star_ts": 1701770410
+          },
+          "2": {
+            "get_star_ts": 1701770836,
+            "star_index": 1097638
+          }
+        },
+        "7": {
+          "2": {
+            "star_index": 1488745,
+            "get_star_ts": 1701931785
+          },
+          "1": {
+            "star_index": 1488140,
+            "get_star_ts": 1701931567
+          }
+        },
+        "2": {
+          "1": {
+            "star_index": 277661,
+            "get_star_ts": 1701495452
+          },
+          "2": {
+            "star_index": 283899,
+            "get_star_ts": 1701496529
+          }
+        },
+        "4": {
+          "1": {
+            "star_index": 837185,
+            "get_star_ts": 1701681164
+          },
+          "2": {
+            "get_star_ts": 1701681417,
+            "star_index": 838363
+          }
+        },
+        "6": {
+          "2": {
+            "star_index": 1302525,
+            "get_star_ts": 1701851048
+          },
+          "1": {
+            "get_star_ts": 1701850048,
+            "star_index": 1298886
+          }
+        }
+      }
+    },
+    "289493": {
+      "completion_day_level": {
+        "2": {
+          "2": {
+            "star_index": 278012,
+            "get_star_ts": 1701495500
+          },
+          "1": {
+            "get_star_ts": 1701494786,
+            "star_index": 272540
+          }
+        },
+        "4": {
+          "1": {
+            "star_index": 785120,
+            "get_star_ts": 1701668539
+          },
+          "2": {
+            "star_index": 814629,
+            "get_star_ts": 1701675840
+          }
+        },
+        "6": {
+          "1": {
+            "get_star_ts": 1701840789,
+            "star_index": 1265258
+          },
+          "2": {
+            "star_index": 1268125,
+            "get_star_ts": 1701841277
+          }
+        },
+        "3": {
+          "1": {
+            "get_star_ts": 1701585467,
+            "star_index": 549365
+          },
+          "2": {
+            "star_index": 554677,
+            "get_star_ts": 1701587355
+          }
+        },
+        "1": {
+          "1": {
+            "star_index": 0,
+            "get_star_ts": 1701407624
+          },
+          "2": {
+            "star_index": 20647,
+            "get_star_ts": 1701412855
+          }
+        },
+        "5": {
+          "2": {
+            "get_star_ts": 1701763335,
+            "star_index": 1077861
+          },
+          "1": {
+            "get_star_ts": 1701757965,
+            "star_index": 1063850
+          }
+        },
+        "7": {
+          "2": {
+            "get_star_ts": 1701934087,
+            "star_index": 1494712
+          },
+          "1": {
+            "star_index": 1488589,
+            "get_star_ts": 1701931734
+          }
+        }
+      },
+      "stars": 14,
+      "local_score": 135,
+      "id": 289493,
+      "global_score": 0,
+      "name": "Matej Capkovic",
+      "last_star_ts": 1701934087
+    },
+    "638930": {
+      "completion_day_level": {
+        "3": {
+          "2": {
+            "get_star_ts": 1701589658,
+            "star_index": 560347
+          },
+          "1": {
+            "star_index": 551774,
+            "get_star_ts": 1701586279
+          }
+        },
+        "5": {
+          "1": {
+            "get_star_ts": 1701755485,
+            "star_index": 1055601
+          },
+          "2": {
+            "get_star_ts": 1701792699,
+            "star_index": 1153245
+          }
+        },
+        "7": {
+          "1": {
+            "star_index": 1482260,
+            "get_star_ts": 1701929694
+          },
+          "2": {
+            "star_index": 1491836,
+            "get_star_ts": 1701932980
+          }
+        },
+        "1": {
+          "2": {
+            "star_index": 54866,
+            "get_star_ts": 1701422905
+          },
+          "1": {
+            "star_index": 41317,
+            "get_star_ts": 1701419431
+          }
+        },
+        "2": {
+          "1": {
+            "star_index": 293157,
+            "get_star_ts": 1701498908
+          },
+          "2": {
+            "get_star_ts": 1701499499,
+            "star_index": 295072
+          }
+        },
+        "4": {
+          "2": {
+            "get_star_ts": 1701672152,
+            "star_index": 800625
+          },
+          "1": {
+            "get_star_ts": 1701668238,
+            "star_index": 783255
+          }
+        },
+        "6": {
+          "2": {
+            "star_index": 1266752,
+            "get_star_ts": 1701841030
+          },
+          "1": {
+            "star_index": 1261233,
+            "get_star_ts": 1701840277
+          }
+        }
+      },
+      "local_score": 129,
+      "stars": 14,
+      "id": 638930,
+      "global_score": 0,
+      "last_star_ts": 1701932980,
+      "name": "Marek Bujdoso"
+    },
+    "2379495": {
+      "completion_day_level": {
+        "5": {
+          "2": {
+            "get_star_ts": 1701758172,
+            "star_index": 1064457
+          },
+          "1": {
+            "get_star_ts": 1701755752,
+            "star_index": 1056624
+          }
+        },
+        "7": {
+          "2": {
+            "star_index": 1484560,
+            "get_star_ts": 1701930371
+          },
+          "1": {
+            "get_star_ts": 1701929221,
+            "star_index": 1480552
+          }
+        },
+        "1": {
+          "2": {
+            "star_index": 20726,
+            "get_star_ts": 1701412881
+          },
+          "1": {
+            "star_index": 15580,
+            "get_star_ts": 1701411123
+          }
+        },
+        "3": {
+          "1": {
+            "get_star_ts": 1701584925,
+            "star_index": 547626
+          },
+          "2": {
+            "star_index": 549861,
+            "get_star_ts": 1701585629
+          }
+        },
+        "6": {
+          "2": {
+            "get_star_ts": 1701840850,
+            "star_index": 1265639
+          },
+          "1": {
+            "star_index": 1262988,
+            "get_star_ts": 1701840486
+          }
+        },
+        "4": {
+          "1": {
+            "star_index": 796339,
+            "get_star_ts": 1701670996
+          },
+          "2": {
+            "star_index": 803526,
+            "get_star_ts": 1701672940
+          }
+        },
+        "2": {
+          "2": {
+            "star_index": 299987,
+            "get_star_ts": 1701501070
+          },
+          "1": {
+            "get_star_ts": 1701500545,
+            "star_index": 298393
+          }
+        }
+      },
+      "local_score": 141,
+      "stars": 14,
+      "id": 2379495,
+      "global_score": 0,
+      "name": "Valter Martinek",
+      "last_star_ts": 1701930371
+    }
+  },
+  "event": "2023"
+}
