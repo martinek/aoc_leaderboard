@@ -11,6 +11,8 @@ const config: Config = {
       colors: {
         gold: "#ffff66",
         silver: "#9999cc",
+        background: "#0f0f23",
+        foreground: "#cccccc",
       },
     },
   },

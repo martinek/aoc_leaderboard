@@ -3,8 +3,31 @@
 @tailwind utilities;
 
 body {
-  background: #0f0f23;
-  color: #cccccc;
+  @apply bg-background;
+  @apply text-foreground;
   font-weight: 300;
   font-size: 14pt;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-gray-700;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #006600;
+  /* border-bottom: 1px solid #009900; */
+  opacity: 0.2;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #009900;
 }

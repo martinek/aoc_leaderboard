@@ -6,13 +6,22 @@ import format from "date-fns/format";
 import orderBy from "lodash/orderBy";
 import * as React from "react";
 import useData, { LeaderboardDayStats } from "../hooks/useData";
+import { useLocalStorage } from "usehooks-ts";
 
 const formatTime = (date: Date) => format(date, "HH:mm:ss");
 const formatDateTime = (date: Date) => format(date, "d.LL.yyyy HH:mm:ss");
 
 const Leaderboard: React.FC = () => {
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const [showTime, setShowTime] = useLocalStorage("showTime", true);
   const [sortDay, setSortDay] = React.useState<number | undefined>(undefined);
   const { data, error, loading, refetch } = useData();
+
+  React.useLayoutEffect(() => {
+    if (loading === false && scrollRef.current != null) {
+      scrollRef.current?.scrollTo(10000000, 0);
+    }
+  }, [loading]);
 
   const members = React.useMemo(() => {
     if (data == null) return [];
@@ -45,10 +54,15 @@ const Leaderboard: React.FC = () => {
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       <div>
-        <div className="flex justify-between text-sm mb-4">
-          <div>
-            {loading && <div className="text-white">Loading...</div>}
-            {error && <div className="text-red-600">{error.message}</div>}
+        <div className="flex justify-between items-end text-sm mb-4">
+          <div className="flex">
+            <div>
+              <Checkbox checked={showTime} onChange={setShowTime} label="Show time" />
+            </div>
+            <div>
+              {loading && <div className="text-white">Loading...</div>}
+              {error && <div className="text-red-600">{error.message}</div>}
+            </div>
           </div>
           <div className="text-right">
             <span>Last fetched: {data?.fetchedAt ? formatDateTime(new Date(data.fetchedAt)) : ""}</span>
@@ -57,58 +71,72 @@ const Leaderboard: React.FC = () => {
           </div>
         </div>
 
-        <table cellPadding={0} cellSpacing={0}>
-          <thead>
-            <tr className="text-white text-sm">
-              <td>Name</td>
-              <td className="text-right px-2">Score</td>
-              {days.map((n) => (
-                <td
-                  key={n}
-                  className={cx("cursor-pointer text-center hover:underline", { "font-bold": sortDay === n })}
-                  onClick={() => setSortDay(sortDay === n ? undefined : n)}
-                >
-                  #{n}
+        <div className="overflow-x-auto container pb-4" ref={scrollRef}>
+          <table cellPadding={0} cellSpacing={0} className="whitespace-nowrap">
+            <thead>
+              <tr className="text-white text-sm">
+                <td className="sticky left-0 bg-background px-2">
+                  <div className="flex justify-between gap-2">
+                    <p>Name</p>
+                    <p className="text-right">Score</p>
+                  </div>
                 </td>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {members.map((member) => (
-              <tr key={member.id}>
-                <td className="pr-2">{member.name}</td>
-                <td className="text-right px-2">{member.localScore}</td>
                 {days.map((n) => (
-                  <td key={n} className="text-center px-2">
-                    <LeaderboardCell stats={member.completionDayLevel[n]} first={firsts[n - 1]} />
+                  <td
+                    key={n}
+                    className={cx("cursor-pointer text-center hover:underline px-2", { "font-bold": sortDay === n })}
+                    onClick={() => setSortDay(sortDay === n ? undefined : n)}
+                  >
+                    #{n}
                   </td>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {members.map((member) => (
+                <tr key={member.id}>
+                  <td className="sticky left-0 bg-background px-2">
+                    <div className="flex justify-between gap-2">
+                      <p>{member.name}</p>
+                      <p className="text-right min-w-[4em]">{member.localScore}</p>
+                    </div>
+                  </td>
+                  {days.map((n) => (
+                    <td key={n} className="text-center px-2">
+                      <LeaderboardCell stats={member.completionDayLevel[n]} first={firsts[n - 1]} showTime={showTime} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
 };
 
-const LeaderboardCell: React.FC<{ stats: LeaderboardDayStats | null; first: number }> = ({ stats, first }) => {
+const LeaderboardCell: React.FC<{ stats: LeaderboardDayStats | null; first: number; showTime: boolean }> = ({
+  stats,
+  first,
+  showTime,
+}) => {
   if (stats == null) return <span className="text-gray-700">*</span>;
 
   const bold = stats["2"]?.getStartTs.getTime() === first;
 
   return (
-    <div className={cx("text-xs py-1", { "font-bold": bold })}>
+    <div className={cx("py-1", { "font-bold": bold, "text-xs": showTime, "text-lg leading-3": !showTime })}>
       <span className="text-silver" title={formatDateTime(stats["1"].getStartTs)}>
-        * {formatTime(stats["1"].getStartTs)}
+        * {showTime ? formatTime(stats["1"].getStartTs) : ""}
       </span>
       <br />
       {stats["2"] != null ? (
         <span className="text-gold" title={formatDateTime(stats["2"].getStartTs)}>
-          * {formatTime(stats["2"].getStartTs)}
+          * {showTime ? formatTime(stats["2"].getStartTs) : ""}
         </span>
       ) : (
-        <span className="text-gray-700">* --:--:--</span>
+        <span className="text-gray-700">* {showTime ? "--:--:--" : ""}</span>
       )}
     </div>
   );
@@ -171,6 +199,18 @@ const UpdateButton: React.FC<{ fetchedAt?: number; onClick: () => void }> = ({ f
   return (
     <button className="text-[#009900] hover:text-[#99ff99]" onClick={onClick}>
       {text}
+    </button>
+  );
+};
+
+const Checkbox: React.FC<{ checked: boolean; onChange: (checked: boolean) => void; label: string }> = ({
+  checked,
+  onChange,
+  label,
+}) => {
+  return (
+    <button className="text-[#009900] hover:text-[#99ff99]" onClick={() => onChange(!checked)}>
+      {checked ? `(o)` : `( )`} {label}
     </button>
   );
 };
