@@ -42,7 +42,7 @@ const Leaderboard: React.FC = () => {
     }
   }, [data, sortDay]);
 
-  const days = new Array(new Date().getDate()).fill(1).map((_, i) => i + 1);
+  const days = new Array(25).fill(1).map((_, i) => i + 1);
 
   const firsts = days.map((n) => {
     const day = n.toString();
