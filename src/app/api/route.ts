@@ -1,9 +1,10 @@
-import { kv } from "@vercel/kv";
+import { createClient } from "redis";
 import { NextRequest } from "next/server";
 
 const URL = process.env.LEADERBOARD_URL;
 const SESSION = process.env.LEADERBOARD_SESSION;
 const TIMEOUT = Number(process.env.LEADERBOARD_TIMEOUT ?? 900) * 1000; // 900 seconds
+const REDIS_URL = process.env.REDIS_URL;
 
 interface Data {
   fetchedAt: number;
@@ -20,9 +21,14 @@ export async function GET(request: NextRequest) {
   const fresh = searchParams.get("fresh");
 
   const now = new Date().getTime();
-  let data = await kv.get<Data>("data");
+  const client = await createClient({ url: REDIS_URL })
+    .on("error", (err: any) => console.log("Redis Client Error", err))
+    .connect();
 
-  if ((data?.data == null || fresh != null) && (data?.fetchedAt == null || now - data.fetchedAt > TIMEOUT)) {
+  const dataStr = await client.get("data");
+  let data: Data | null = dataStr ? JSON.parse(dataStr) : null;
+
+  if (data?.data == null || fresh != null || data?.fetchedAt == null || now - data.fetchedAt > TIMEOUT) {
     console.log(`Requesting fresh data for ${URL}`);
     const res = await fetch(URL, {
       headers: {
@@ -33,7 +39,7 @@ export async function GET(request: NextRequest) {
     const resData = await res.json();
     if (resData) {
       data = { data: resData, fetchedAt: new Date().getTime() };
-      await kv.set<Data>("data", data);
+      await client.set("data", JSON.stringify(data));
     }
   } else {
     console.log(`Using cached data`);
