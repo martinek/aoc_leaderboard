@@ -81,7 +81,7 @@ const Leaderboard: React.FC = () => {
           <table cellPadding={0} cellSpacing={0} className="whitespace-nowrap">
             <thead>
               <tr className="text-white text-sm">
-                <td className="sticky left-0 bg-background px-2">
+                <td className="sticky left-0 bg-background px-2 z-10">
                   <div className="flex justify-between gap-2">
                     <p>Name</p>
                     <p className="text-right">Score</p>
@@ -101,7 +101,7 @@ const Leaderboard: React.FC = () => {
             <tbody>
               {members.map((member) => (
                 <tr key={member.id}>
-                  <td className="sticky left-0 bg-background px-2">
+                  <td className="sticky left-0 bg-background px-2 z-10">
                     <div className="flex justify-between gap-2">
                       <p>{member.name}</p>
                       <p className="text-right min-w-[4em]">{member.localScore}</p>
@@ -140,13 +140,19 @@ const LeaderboardCell: React.FC<{
 
   return (
     <div className={cx("py-1", { "text-xs": showTime, "text-lg leading-3": !showTime })}>
-      <span className={cx("text-silver", { "font-bold": boldSilver })} title={formatDateTime(stats["1"].getStartTs)}>
-        * {showTime ? formatTime(stats["1"].getStartTs) : ""}
+      <span
+        className={cx("relative text-silver", { "font-bold": boldSilver })}
+        title={formatDateTime(stats["1"].getStartTs)}
+      >
+        {boldSilver && <Highlight small={showTime} />}* {showTime ? formatTime(stats["1"].getStartTs) : ""}
       </span>
       <br />
       {stats["2"] != null ? (
-        <span className={cx("text-gold", { "font-bold": boldGold })} title={formatDateTime(stats["2"].getStartTs)}>
-          * {showTime ? formatTime(stats["2"].getStartTs) : ""}
+        <span
+          className={cx("relative text-gold", { "font-bold": boldGold })}
+          title={formatDateTime(stats["2"].getStartTs)}
+        >
+          {boldGold && <Highlight small={showTime} />}* {showTime ? formatTime(stats["2"].getStartTs) : ""}
         </span>
       ) : (
         <span className="text-gray-700">* {showTime ? "--:--:--" : ""}</span>
@@ -154,6 +160,17 @@ const LeaderboardCell: React.FC<{
     </div>
   );
 };
+
+const Highlight = ({ small }: { small: boolean }) => (
+  <span
+    className="absolute border-current border-2 opacity-50"
+    style={
+      small
+        ? { width: "0.8rem", height: "0.8rem", top: "0.12rem", left: "-0.18rem", borderRadius: "50%" }
+        : { width: "1rem", height: "1rem", top: "0.23rem", left: "-0.18rem", borderRadius: "50%" }
+    }
+  />
+);
 
 const TIMEOUT = Number(process.env.LEADERBOARD_TIMEOUT ?? 900) * 1000;
 
