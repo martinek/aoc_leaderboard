@@ -44,10 +44,16 @@ const Leaderboard: React.FC = () => {
 
   const days = new Array(25).fill(1).map((_, i) => i + 1);
 
-  const firsts = days.map((n) => {
+  const firstGolds = days.map((n) => {
     const day = n.toString();
     return Math.min(
       ...members.map((m) => m.completionDayLevel[day]?.[2]?.getStartTs.getTime() ?? Infinity).filter(Boolean)
+    );
+  });
+  const firstSilvers = days.map((n) => {
+    const day = n.toString();
+    return Math.min(
+      ...members.map((m) => m.completionDayLevel[day]?.[1]?.getStartTs.getTime() ?? Infinity).filter(Boolean)
     );
   });
 
@@ -103,7 +109,12 @@ const Leaderboard: React.FC = () => {
                   </td>
                   {days.map((n) => (
                     <td key={n} className="text-center px-2">
-                      <LeaderboardCell stats={member.completionDayLevel[n]} first={firsts[n - 1]} showTime={showTime} />
+                      <LeaderboardCell
+                        stats={member.completionDayLevel[n]}
+                        firstGold={firstGolds[n - 1]}
+                        firstSilver={firstSilvers[n - 1]}
+                        showTime={showTime}
+                      />
                     </td>
                   ))}
                 </tr>
@@ -116,23 +127,25 @@ const Leaderboard: React.FC = () => {
   );
 };
 
-const LeaderboardCell: React.FC<{ stats: LeaderboardDayStats | null; first: number; showTime: boolean }> = ({
-  stats,
-  first,
-  showTime,
-}) => {
+const LeaderboardCell: React.FC<{
+  stats: LeaderboardDayStats | null;
+  firstGold: number;
+  firstSilver: number;
+  showTime: boolean;
+}> = ({ stats, firstGold, firstSilver, showTime }) => {
   if (stats == null) return <span className="text-gray-700">*</span>;
 
-  const bold = stats["2"]?.getStartTs.getTime() === first;
+  const boldGold = stats["2"]?.getStartTs.getTime() === firstGold;
+  const boldSilver = stats["1"]?.getStartTs.getTime() === firstSilver;
 
   return (
-    <div className={cx("py-1", { "font-bold": bold, "text-xs": showTime, "text-lg leading-3": !showTime })}>
-      <span className="text-silver" title={formatDateTime(stats["1"].getStartTs)}>
+    <div className={cx("py-1", { "text-xs": showTime, "text-lg leading-3": !showTime })}>
+      <span className={cx("text-silver", { "font-bold": boldSilver })} title={formatDateTime(stats["1"].getStartTs)}>
         * {showTime ? formatTime(stats["1"].getStartTs) : ""}
       </span>
       <br />
       {stats["2"] != null ? (
-        <span className="text-gold" title={formatDateTime(stats["2"].getStartTs)}>
+        <span className={cx("text-gold", { "font-bold": boldGold })} title={formatDateTime(stats["2"].getStartTs)}>
           * {showTime ? formatTime(stats["2"].getStartTs) : ""}
         </span>
       ) : (
